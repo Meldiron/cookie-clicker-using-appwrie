@@ -2,6 +2,64 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.0.
 
+## Appwrite setup
+
+You need to create a project and define these collections:
+
+**profiles**
+
+```
+{
+    "$id": "612fa28bd85c2",
+    "$permissions": {
+        "read": [
+            "*"
+        ],
+        "write": [
+            "*"
+        ]
+    },
+    "name": "profiles",
+    "dateCreated": 1630511755,
+    "dateUpdated": 1630512498,
+    "rules": [
+        {
+            "$id": "612fa4dfd8f6e",
+            "$collection": "rules",
+            "type": "text",
+            "key": "userId",
+            "label": "userId",
+            "default": "",
+            "array": false,
+            "required": true,
+            "list": []
+        },
+        {
+            "$id": "612fa4dfdb996",
+            "$collection": "rules",
+            "type": "text",
+            "key": "username",
+            "label": "username",
+            "default": "",
+            "array": false,
+            "required": true,
+            "list": []
+        },
+        {
+            "$id": "612fa5728515b",
+            "$collection": "rules",
+            "type": "numeric",
+            "key": "clicks",
+            "label": "clicks",
+            "default": 0,
+            "array": false,
+            "required": true,
+            "list": []
+        }
+    ]
+}
+```
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
