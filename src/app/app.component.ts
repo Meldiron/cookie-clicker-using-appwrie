@@ -63,6 +63,8 @@ export class AppComponent implements OnInit {
       this.isAnonymous = false;
     }
 
+    console.log(account);
+
     await this.getSelfProfile();
     await this.subscribeToSelfProfile();
 
@@ -178,7 +180,7 @@ export class AppComponent implements OnInit {
 
     setTimeout(() => {
       this.syncTopList();
-    }, 3000);
+    }, 500);
   }
 
   mouseDown(e: Event) {
