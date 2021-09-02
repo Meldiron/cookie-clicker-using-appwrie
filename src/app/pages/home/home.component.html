@@ -1,0 +1,263 @@
+<div class="container mx-auto">
+  <header
+    class="flex items-center justify-between p-6 bg-white shadow-md  rounded-b-xl"
+  >
+    <div class="flex items-end justify-start space-x-3">
+      <h1 class="text-2xl font-bold">Cookie clicker</h1>
+      <h6 class="text-gray-600">
+        powered by
+        <a
+          target="_blank"
+          href="https://appwrite.io/"
+          class="font-bold text-red-500"
+          >Appwrite</a
+        >
+      </h6>
+    </div>
+
+    <div class="flex space-x-6">
+      <button
+        (click)="onChangeUsername($event)"
+        type="button"
+        class="inline-flex items-center px-4 py-2 text-base font-medium text-green-700 bg-green-100 border border-transparent rounded-md  hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+      >
+        Change username
+      </button>
+
+      <button
+        (click)="onLogin($event)"
+        *ngIf="isAnonymous"
+        type="button"
+        class="inline-flex items-center px-4 py-2 text-base font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm  hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+      >
+        Login using E-mail
+        <!-- Heroicon name: solid/mail -->
+        <svg
+          class="w-5 h-5 ml-3 -mr-1"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+          />
+          <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+        </svg>
+      </button>
+
+      <button
+        (click)="onLogout($event)"
+        *ngIf="!isAnonymous"
+        type="button"
+        class="inline-flex items-center px-4 py-2 text-base font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm  hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+      >
+        Logout
+        <!-- Heroicon name: solid/mail -->
+        <svg
+          class="w-5 h-5 ml-3 -mr-1"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+          />
+          <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+        </svg>
+      </button>
+
+      <div class="flex flex-col text-right">
+        <p class="text-sm text-gray-600">Currently logged in as</p>
+        <span class="-mt-1 text-lg font-bold">
+          {{ profileDocument ? profileDocument.username : "..." }}
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <section class="mt-8">
+    <div class="p-4 rounded-md bg-green-50">
+      <div class="flex">
+        <div class="flex-shrink-0">
+          <!-- Heroicon name: solid/information-circle -->
+          <svg
+            class="w-5 h-5 text-green-400"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </div>
+        <div class="flex-1 ml-3 md:flex md:justify-between">
+          <p class="text-sm text-green-700">
+            Welcome to open-sourced Cookie Clicker clone made with Appwrite to
+            present 0.10 features such as
+            <span class="font-bold text-green-900">Magic URL</span>,
+            <span class="font-bold text-green-900">Realtime API</span> and
+            <span class="font-bold text-green-900"
+              >improved Appwrite Functions</span
+            >. Happy clicking!
+          </p>
+          <p class="mt-3 text-sm md:mt-0 md:ml-6">
+            <a
+              href="https://dev.to/appwrite"
+              target="_blank"
+              class="font-medium text-green-700  whitespace-nowrap hover:text-green-600"
+              >Details <span aria-hidden="true">&rarr;</span></a
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="grid grid-cols-12 gap-6 mt-4">
+    <section
+      class="
+        sticky
+        top-12
+        col-span-5
+        h-[max-content]
+        p-8
+        bg-white
+        shadow-md
+        rounded-xl
+      "
+    >
+      <h1 class="mt-6 mb-12 text-4xl font-bold text-center text-gray-400">
+        Click! Click! Click!
+      </h1>
+
+      <div class="relative flex justify-center">
+        <img
+          (click)="onCookieClick($event)"
+          (pointerdown)="mouseDown($event)"
+          (pointerup)="mouseUp($event)"
+          [ngClass]="cookieAnimationClasses"
+          src="/assets/cookie.png"
+          class="transition-transform duration-200 transform scale-100 rotate-0 cursor-pointer  hover:rotate-3 hover:scale-105 w-42"
+          alt=""
+        />
+
+        <div class="absolute inset-0 z-20 pointer-events-none">
+          <div class="relative w-full h-full" id="cookies-animation-el"></div>
+        </div>
+      </div>
+
+      <h1 class="mt-12 text-2xl font-bold text-center text-gray-500">
+        You have clicked
+        <span class="text-black">{{
+          profileDocument ? profileDocument.clicks : "..."
+        }}</span>
+        times.
+      </h1>
+
+      <h3 class="mt-4 mb-6 text-lg font-bold text-center text-gray-400">
+        Average user clicked
+        <span class="text-gray-600">{{
+          averageClicks !== undefined ? averageClicks : "..."
+        }}</span>
+        times.
+      </h3>
+    </section>
+
+    <section class="col-span-7 p-8 bg-white shadow-md rounded-xl">
+      <h1 class="mt-6 mb-12 text-4xl font-bold text-center text-green-500">
+        The Best clickers
+      </h1>
+
+      <section class="grid grid-cols-12 gap-x-6">
+        <div class="col-span-4 mt-8" *ngIf="topProfilesArray[1]">
+          <div class="flex flex-col items-center justify-center w-full">
+            <img src="/assets/second.png" class="z-20 w-20" alt="" />
+            <div
+              class="w-full p-8 pt-12 pb-20 -mt-6 text-center bg-gray-100 shadow-md  rounded-xl"
+            >
+              <h3 class="font-bold text-center">
+                {{ topProfilesArray[1].username }}
+              </h3>
+              <h6 class="text-gray-600">
+                with
+                <span class="font-bold text-black">{{
+                  topProfilesArray[1].clicks
+                }}</span>
+                clicks
+              </h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-span-4" *ngIf="topProfilesArray[0]">
+          <div class="flex flex-col items-center justify-center w-full">
+            <img src="/assets/first.png" class="z-20 w-20" alt="" />
+            <div
+              class="w-full p-8 pt-12 -mt-6 text-center bg-gray-100 shadow-md  pb-28 rounded-xl"
+            >
+              <h3 class="font-bold text-center">
+                {{ topProfilesArray[0].username }}
+              </h3>
+              <h6 class="text-gray-600">
+                with
+                <span class="font-bold text-black">{{
+                  topProfilesArray[0].clicks
+                }}</span>
+                clicks
+              </h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-span-4 mt-16" *ngIf="topProfilesArray[2]">
+          <div class="flex flex-col items-center justify-center w-full">
+            <img src="/assets/third.png" class="z-20 w-20" alt="" />
+            <div
+              class="w-full p-8 pt-12 pb-12 -mt-6 text-center bg-gray-100 shadow-md  rounded-xl"
+            >
+              <h3 class="font-bold text-center">
+                {{ topProfilesArray[2].username }}
+              </h3>
+              <h6 class="text-gray-600">
+                with
+                <span class="font-bold text-black">{{
+                  topProfilesArray[2].clicks
+                }}</span>
+                clicks
+              </h6>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="flex flex-col px-4 mt-10 space-y-4">
+        <div
+          *ngFor="
+            let profile of getTop7Array(topProfilesArray);
+            let profileIndex = index
+          "
+          class="flex items-center justify-start p-6 space-x-6 bg-gray-100 shadow-md  rounded-xl"
+        >
+          <div
+            class="flex items-center justify-center w-12 h-12 text-lg font-bold text-gray-600 bg-white rounded-full "
+          >
+            {{ profileIndex + 4 }}
+          </div>
+
+          <p class="text-left text-gray-600">
+            <span class="font-bold text-black">{{ profile.username }}</span>
+            with
+            <span class="font-bold text-black"> {{ profile.clicks }} </span>
+            clicks
+          </p>
+        </div>
+      </section>
+    </section>
+  </section>
+</div>

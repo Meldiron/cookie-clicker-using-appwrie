@@ -5,9 +5,9 @@
 export const environment = {
   production: false,
   appwriteEndpoint: 'https://aw10.matejbaco.eu/v1',
-  appwriteProjectId: '612fb8cb81168',
+  appwriteProjectId: '6130e782c57a7',
   appwriteCollections: {
-    profileId: '612fb8e05a0f6',
+    profileId: '6130e787a74d8',
   },
 };
 
