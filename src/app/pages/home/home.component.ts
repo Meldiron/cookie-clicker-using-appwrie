@@ -287,7 +287,7 @@ export class HomeComponent implements OnInit {
     try {
       await this.aw.sdk.account.createMagicURLSession(
         email,
-        'http://localhost:4200/login-end'
+        environment.appUrl + '/login-end'
       );
 
       this.router.navigateByUrl('/login-start');
