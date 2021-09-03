@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   userId: string | undefined;
 
   isAnonymous = true;
-  averageClicks = '[COMING SOON]';
+  averageClicks: number | undefined;
 
   profileDocument: ProfileDocument | undefined;
   topProfilesArray: ProfileDocument[] = [];
@@ -53,8 +53,33 @@ export class HomeComponent implements OnInit {
 
     await this.getSelfProfile();
     await this.subscribeToSelfProfile();
+    await this.subscribeToAverages();
 
     await this.syncTopList();
+  }
+
+  async subscribeToAverages() {
+    const averagesQuery: any = await this.aw.sdk.database.listDocuments(
+      environment.appwriteCollections.averagesId,
+      [],
+      1,
+      0,
+      'timeAt',
+      'DESC'
+    );
+    if (averagesQuery.documents.length > 0) {
+      this.averageClicks = averagesQuery.documents[0].averageClicks;
+    }
+
+    console.log('SUB1');
+    this.aw.sdk.subscribe(
+      `collections.${environment.appwriteCollections.averagesId}.documents`,
+      (event: any) => {
+        if (event.event === 'database.documents.create') {
+          this.averageClicks = event.payload.averageClicks;
+        }
+      }
+    );
   }
 
   async subscribeToSelfProfile() {
@@ -62,6 +87,7 @@ export class HomeComponent implements OnInit {
       return;
     }
 
+    console.log('SUB2');
     this.aw.sdk.subscribe(
       `documents.${this.profileDocument.$id}`,
       (event: any) => {
@@ -125,6 +151,7 @@ export class HomeComponent implements OnInit {
 
     for (const topProfile of topProfilesArray) {
       if (!this.externalProfilesSubscriptons[topProfile.$id]) {
+        console.log('SUB3');
         this.externalProfilesSubscriptons[topProfile.$id] =
           this.aw.sdk.subscribe(`documents.${topProfile.$id}`, (event) => {
             const payload = <ProfileDocument>event.payload;
@@ -165,13 +192,14 @@ export class HomeComponent implements OnInit {
 
       if (!topProfile) {
         // Unsubscribe
+        console.log('UNSUBBING');
         this.externalProfilesSubscriptons[profileId]();
       }
     });
 
     setTimeout(() => {
       this.syncTopList();
-    }, 500);
+    }, 1000);
   }
 
   mouseDown(e: Event) {

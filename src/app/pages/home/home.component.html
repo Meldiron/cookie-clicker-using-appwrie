@@ -1,8 +1,10 @@
 <div class="container mx-auto">
   <header
-    class="flex items-center justify-between p-6 bg-white shadow-md  rounded-b-xl"
+    class="flex flex-col items-center justify-between p-6 space-y-4 bg-white shadow-md  lg:space-y-0 lg:space-x-3 lg:flex-row rounded-b-xl"
   >
-    <div class="flex items-end justify-start space-x-3">
+    <div
+      class="flex flex-col items-end justify-start space-y-2  sm:flex-row sm:space-y-0 sm:space-x-3"
+    >
       <h1 class="text-2xl font-bold">Cookie clicker</h1>
       <h6 class="text-gray-600">
         powered by
@@ -15,11 +17,11 @@
       </h6>
     </div>
 
-    <div class="flex space-x-6">
+    <div class="flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-6">
       <button
         (click)="onChangeUsername($event)"
         type="button"
-        class="inline-flex items-center px-4 py-2 text-base font-medium text-green-700 bg-green-100 border border-transparent rounded-md  hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+        class="inline-flex items-center justify-center px-4 py-2 text-base font-medium text-green-700 bg-green-100 border border-transparent rounded-md  hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
       >
         Change username
       </button>
@@ -28,7 +30,7 @@
         (click)="onLogin($event)"
         *ngIf="isAnonymous"
         type="button"
-        class="inline-flex items-center px-4 py-2 text-base font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm  hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+        class="inline-flex items-center justify-center px-4 py-2 text-base font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm  hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
       >
         Login using E-mail
         <!-- Heroicon name: solid/mail -->
@@ -50,7 +52,7 @@
         (click)="onLogout($event)"
         *ngIf="!isAnonymous"
         type="button"
-        class="inline-flex items-center px-4 py-2 text-base font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm  hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+        class="inline-flex items-center justify-center px-4 py-2 text-base font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm  hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
       >
         Logout
         <!-- Heroicon name: solid/mail -->
@@ -68,7 +70,7 @@
         </svg>
       </button>
 
-      <div class="flex flex-col text-right">
+      <div class="flex flex-col text-center lg:text-right">
         <p class="text-sm text-gray-600">Currently logged in as</p>
         <span class="-mt-1 text-lg font-bold">
           {{ profileDocument ? profileDocument.username : "..." }}
@@ -122,9 +124,9 @@
   <section class="grid grid-cols-12 gap-6 mt-4">
     <section
       class="
-        sticky
-        top-12
-        col-span-5
+        lg:sticky lg:top-12
+        col-span-12
+        lg:col-span-5
         h-[max-content]
         p-8
         bg-white
@@ -169,40 +171,22 @@
       </h3>
     </section>
 
-    <section class="col-span-7 p-8 bg-white shadow-md rounded-xl">
+    <section
+      class="col-span-12 p-8 bg-white shadow-md lg:col-span-7 rounded-xl"
+    >
       <h1 class="mt-6 mb-12 text-4xl font-bold text-center text-green-500">
         The Best clickers
       </h1>
 
-      <section class="grid grid-cols-12 gap-x-6">
-        <div class="col-span-4 mt-8" *ngIf="topProfilesArray[1]">
-          <div class="flex flex-col items-center justify-center w-full">
-            <img src="/assets/second.png" class="z-20 w-20" alt="" />
-            <div
-              class="w-full p-8 pt-12 pb-20 -mt-6 text-center bg-gray-100 shadow-md  rounded-xl"
-            >
-              <h3 class="font-bold text-center">
-                {{ topProfilesArray[1].username }}
-              </h3>
-              <h6 class="text-gray-600">
-                with
-                <span class="font-bold text-black">{{
-                  topProfilesArray[1].clicks
-                }}</span>
-                clicks
-              </h6>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-span-4" *ngIf="topProfilesArray[0]">
+      <section class="grid grid-cols-12 gap-x-6 gap-y-10">
+        <div class="col-span-12 md:col-span-4" *ngIf="topProfilesArray[0]">
           <div class="flex flex-col items-center justify-center w-full">
             <img src="/assets/first.png" class="z-20 w-20" alt="" />
             <div
-              class="w-full p-8 pt-12 -mt-6 text-center bg-gray-100 shadow-md  pb-28 rounded-xl"
+              class="w-full p-8 pt-12 -mt-6 text-center bg-gray-100 shadow-md  rounded-xl"
             >
               <h3 class="font-bold text-center">
-                {{ topProfilesArray[0].username }}
+                {{ topProfilesArray[0].username || "Noname" }}
               </h3>
               <h6 class="text-gray-600">
                 with
@@ -215,14 +199,34 @@
           </div>
         </div>
 
-        <div class="col-span-4 mt-16" *ngIf="topProfilesArray[2]">
+        <div class="col-span-12 md:col-span-4" *ngIf="topProfilesArray[1]">
+          <div class="flex flex-col items-center justify-center w-full">
+            <img src="/assets/second.png" class="z-20 w-20" alt="" />
+            <div
+              class="w-full p-8 pt-12 -mt-6 text-center bg-gray-100 shadow-md  rounded-xl"
+            >
+              <h3 class="font-bold text-center">
+                {{ topProfilesArray[1].username || "Noname" }}
+              </h3>
+              <h6 class="text-gray-600">
+                with
+                <span class="font-bold text-black">{{
+                  topProfilesArray[1].clicks
+                }}</span>
+                clicks
+              </h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-span-12 md:col-span-4" *ngIf="topProfilesArray[2]">
           <div class="flex flex-col items-center justify-center w-full">
             <img src="/assets/third.png" class="z-20 w-20" alt="" />
             <div
-              class="w-full p-8 pt-12 pb-12 -mt-6 text-center bg-gray-100 shadow-md  rounded-xl"
+              class="w-full p-8 pt-12 -mt-6 text-center bg-gray-100 shadow-md  rounded-xl"
             >
               <h3 class="font-bold text-center">
-                {{ topProfilesArray[2].username }}
+                {{ topProfilesArray[2].username || "Noname" }}
               </h3>
               <h6 class="text-gray-600">
                 with
@@ -236,7 +240,7 @@
         </div>
       </section>
 
-      <section class="flex flex-col px-4 mt-10 space-y-4">
+      <section class="flex flex-col mt-10 space-y-4">
         <div
           *ngFor="
             let profile of getTop7Array(topProfilesArray);
@@ -251,7 +255,9 @@
           </div>
 
           <p class="text-left text-gray-600">
-            <span class="font-bold text-black">{{ profile.username }}</span>
+            <span class="font-bold text-black">{{
+              profile.username || "Noname"
+            }}</span>
             with
             <span class="font-bold text-black"> {{ profile.clicks }} </span>
             clicks

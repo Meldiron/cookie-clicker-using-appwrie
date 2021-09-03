@@ -1,0 +1,12 @@
+{
+    "name": "meldiron/calculateaverage",
+    "require": {
+        "appwrite/appwrite": "^2.3"
+    },
+    "authors": [
+        {
+            "name": "Matej Baco",
+            "email": "matej@appwrite.io"
+        }
+    ]
+}

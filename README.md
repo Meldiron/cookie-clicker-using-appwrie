@@ -4,7 +4,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Appwrite setup
 
+**Currently, the setup is not fully docummented.**
+
 You need to create a project and define these collections:
+
+### Collections
 
 **profiles**
 
@@ -57,6 +61,75 @@ You need to create a project and define these collections:
             "list": []
         }
     ]
+}
+```
+
+**averages**
+
+```
+{
+    "$id": "6131b30f7b613",
+    "$permissions": {
+        "read": [
+            "role:member"
+        ],
+        "write": []
+    },
+    "name": "averages",
+    "dateCreated": 1630647055,
+    "dateUpdated": 1630647081,
+    "rules": [
+        {
+            "$id": "6131b32976319",
+            "$collection": "rules",
+            "type": "numeric",
+            "key": "averageClicks",
+            "label": "averageClicks",
+            "default": 0,
+            "array": false,
+            "required": false,
+            "list": []
+        },
+        {
+            "$id": "6131b329791a5",
+            "$collection": "rules",
+            "type": "numeric",
+            "key": "timeAt",
+            "label": "timeAt",
+            "default": 0,
+            "array": false,
+            "required": false,
+            "list": []
+        }
+    ]
+}
+```
+
+### Functions
+
+**calculateAverage**
+
+```
+{
+    "$id": "6131b3c4e282a",
+    "$permissions": {
+        "execute": []
+    },
+    "name": "calculateAverage",
+    "dateCreated": 1630647236,
+    "dateUpdated": 1630647450,
+    "status": "disabled",
+    "runtime": "php-8.0",
+    "tag": "",
+    "vars": {
+        "APPWRITE_API_KEY": "########",
+        "APPWRITE_ENDPOINT": "########"
+    },
+    "events": [],
+    "schedule": "0 * * * *",
+    "scheduleNext": 0,
+    "schedulePrevious": 0,
+    "timeout": 60
 }
 ```
 
