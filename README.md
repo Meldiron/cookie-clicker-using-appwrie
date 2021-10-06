@@ -1,4 +1,6 @@
-[![Built with Appwrite](Built with Appwrite)](https://appwrite.io/)
+<p align="center"><a href="https://appwrite.io/" alt="Built with Appwrite"><img src="https://appwrite.io/images-ee/press/badge-pink-button.svg" height="80"></a></p>
+
+
 
 # CookieClicker
 
