@@ -1,3 +1,5 @@
+[![Built with Appwrite](Built with Appwrite)](https://appwrite.io/)
+
 # CookieClicker
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.0.
