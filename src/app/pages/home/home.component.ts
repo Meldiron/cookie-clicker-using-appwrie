@@ -121,6 +121,7 @@ export class HomeComponent implements OnInit {
           clicks: 0,
           username: 'Anonymous user',
         },
+        ['role:all']
       );
 
       console.log(userProfile);
