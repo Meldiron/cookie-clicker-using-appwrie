@@ -1,0 +1,107 @@
+{
+    "projectId": "cookieClicker",
+    "projectName": "Matej - Cookie Clicker",
+    "collections": [
+        {
+            "$id": "profiles",
+            "$read": [
+                "role:all"
+            ],
+            "$write": [
+                "role:all"
+            ],
+            "name": "profiles",
+            "enabled": true,
+            "permission": "collection",
+            "attributes": [
+                {
+                    "key": "userId",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "clicks",
+                    "type": "integer",
+                    "status": "available",
+                    "required": false,
+                    "array": false,
+                    "min": 0,
+                    "max": 9000000000,
+                    "default": null
+                },
+                {
+                    "key": "username",
+                    "type": "string",
+                    "status": "available",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                }
+            ],
+            "indexes": [
+                {
+                    "key": "userId",
+                    "type": "key",
+                    "status": "available",
+                    "attributes": [
+                        "userId"
+                    ],
+                    "orders": [
+                        "ASC"
+                    ]
+                }
+            ]
+        },
+        {
+            "$id": "averages",
+            "$read": [
+                "role:all"
+            ],
+            "$write": [],
+            "name": "averages",
+            "enabled": true,
+            "permission": "collection",
+            "attributes": [
+                {
+                    "key": "timeAt",
+                    "type": "double",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "min": 0,
+                    "max": 9000000000,
+                    "default": null
+                },
+                {
+                    "key": "averageClicks",
+                    "type": "double",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "min": 0,
+                    "max": 9000000000,
+                    "default": null
+                }
+            ],
+            "indexes": []
+        }
+    ],
+    "functions": [
+        {
+            "$id": "623c5eb46fa886e6741d",
+            "name": "calculateAverage",
+            "runtime": "php-8.0",
+            "path": "functions/calculateAverage",
+            "entrypoint": "src/index.php",
+            "execute": [],
+            "events": [],
+            "schedule": "* * * * *",
+            "timeout": 60
+        }
+    ]
+}

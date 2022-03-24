@@ -121,8 +121,6 @@ export class HomeComponent implements OnInit {
           clicks: 0,
           username: 'Anonymous user',
         },
-        ['*'],
-        [`user:${this.userId}`]
       );
 
       console.log(userProfile);

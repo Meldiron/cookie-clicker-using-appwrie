@@ -1,141 +1,14 @@
 <p align="center"><a href="https://appwrite.io/" alt="Built with Appwrite"><img src="https://appwrite.io/images-ee/press/badge-pink-button.svg" height="80"></a></p>
 
-
-
-# CookieClicker
+# Cookie Clicker with Appwrite
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.0.
 
 ## Appwrite setup
 
-**Currently, the setup is not fully docummented.**
+Create a new project, and deploy functions & collections: `appwrite deploy --all`. Learn more about [Appwrite CLI](https://appwrite.io/docs/command-line).
 
-You need to create a project and define these collections:
-
-### Collections
-
-**profiles**
-
-```
-{
-    "$id": "612fa28bd85c2",
-    "$permissions": {
-        "read": [
-            "*"
-        ],
-        "write": [
-            "*"
-        ]
-    },
-    "name": "profiles",
-    "dateCreated": 1630511755,
-    "dateUpdated": 1630512498,
-    "rules": [
-        {
-            "$id": "612fa4dfd8f6e",
-            "$collection": "rules",
-            "type": "text",
-            "key": "userId",
-            "label": "userId",
-            "default": "",
-            "array": false,
-            "required": true,
-            "list": []
-        },
-        {
-            "$id": "612fa4dfdb996",
-            "$collection": "rules",
-            "type": "text",
-            "key": "username",
-            "label": "username",
-            "default": "",
-            "array": false,
-            "required": true,
-            "list": []
-        },
-        {
-            "$id": "612fa5728515b",
-            "$collection": "rules",
-            "type": "numeric",
-            "key": "clicks",
-            "label": "clicks",
-            "default": 0,
-            "array": false,
-            "required": true,
-            "list": []
-        }
-    ]
-}
-```
-
-**averages**
-
-```
-{
-    "$id": "6131b30f7b613",
-    "$permissions": {
-        "read": [
-            "role:member"
-        ],
-        "write": []
-    },
-    "name": "averages",
-    "dateCreated": 1630647055,
-    "dateUpdated": 1630647081,
-    "rules": [
-        {
-            "$id": "6131b32976319",
-            "$collection": "rules",
-            "type": "numeric",
-            "key": "averageClicks",
-            "label": "averageClicks",
-            "default": 0,
-            "array": false,
-            "required": false,
-            "list": []
-        },
-        {
-            "$id": "6131b329791a5",
-            "$collection": "rules",
-            "type": "numeric",
-            "key": "timeAt",
-            "label": "timeAt",
-            "default": 0,
-            "array": false,
-            "required": false,
-            "list": []
-        }
-    ]
-}
-```
-
-### Functions
-
-**calculateAverage**
-
-```
-{
-    "$id": "6131b3c4e282a",
-    "$permissions": {
-        "execute": []
-    },
-    "name": "calculateAverage",
-    "dateCreated": 1630647236,
-    "dateUpdated": 1630647450,
-    "status": "disabled",
-    "runtime": "php-8.0",
-    "tag": "",
-    "vars": {
-        "APPWRITE_API_KEY": "########",
-        "APPWRITE_ENDPOINT": "########"
-    },
-    "events": [],
-    "schedule": "0 * * * *",
-    "scheduleNext": 0,
-    "schedulePrevious": 0,
-    "timeout": 60
-}
-```
+After deploying, make sure to set ENV variables on functions, as described in each function `README.md` inside `functions` folder.
 
 ## Development server
 
